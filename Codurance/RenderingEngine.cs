@@ -40,20 +40,20 @@
 
             if (span.TotalSeconds < 60)
             {
-                return string.Format("{0} second(s) ago", span.TotalSeconds);
+                return string.Format("{0} second(s) ago", Math.Floor(span.TotalSeconds));
             }
 
             if (span.TotalMinutes < 60)
             {
-                return string.Format("{0} minute(s) ago", span.TotalMinutes);
+                return string.Format("{0} minute(s) ago", Math.Floor(span.TotalMinutes));
             }
 
             if (span.TotalHours < 24)
             {
-                return string.Format("{0} hour(s) ago", span.TotalHours);
+                return string.Format("{0} hour(s) ago", Math.Floor(span.TotalHours));
             }
 
-            return string.Format("{0} day(s) ago", span.TotalDays);
+            return string.Format("{0} day(s) ago", Math.Floor(span.TotalDays));
         }
     }
 }

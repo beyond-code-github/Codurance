@@ -35,12 +35,12 @@
         private Establish context = () =>
             {
                 seconds = TestHelpers.RandomInt(1, 59);
-                post = new Post(username, message, snapshot.AddSeconds(-seconds));
+                post = new Post(username, message, snapshot.AddSeconds(-seconds - 0.01));
             };
 
         private Because of = () => result = subject.RenderPosts(new[] { post });
 
-        private It should_render_showing_age_in_terms_of_seconds =
+        private It should_render_showing_age_in_terms_of_whole_seconds =
             () => result.ShouldEqual(string.Format("{0} - {1} ({2} second(s) ago)\r\n", post.Username, post.Message, seconds));
     }
 
@@ -51,12 +51,12 @@
         private Establish context = () =>
         {
             minutes = TestHelpers.RandomInt(1, 59);
-            post = new Post(username, message, snapshot.AddMinutes(-minutes));
+            post = new Post(username, message, snapshot.AddMinutes(-minutes - 0.01));
         };
 
         private Because of = () => result = subject.RenderPosts(new[] { post });
 
-        private It should_render_showing_age_in_terms_of_minutes =
+        private It should_render_showing_age_in_terms_of_whole_minutes =
             () => result.ShouldEqual(string.Format("{0} - {1} ({2} minute(s) ago)\r\n", post.Username, post.Message, minutes));
     }
 
@@ -67,12 +67,12 @@
         private Establish context = () =>
         {
             hours = TestHelpers.RandomInt(1, 23);
-            post = new Post(username, message, snapshot.AddHours(-hours));
+            post = new Post(username, message, snapshot.AddHours(-hours - 0.01));
         };
 
         private Because of = () => result = subject.RenderPosts(new[] { post });
 
-        private It should_render_showing_age_in_terms_of_hours =
+        private It should_render_showing_age_in_terms_of_whole_hours =
             () => result.ShouldEqual(string.Format("{0} - {1} ({2} hour(s) ago)\r\n", post.Username, post.Message, hours));
     }
 
@@ -83,12 +83,12 @@
         private Establish context = () =>
         {
             days = TestHelpers.RandomInt(1, 59);
-            post = new Post(username, message, snapshot.AddDays(-days));
+            post = new Post(username, message, snapshot.AddDays(-days - 0.01));
         };
 
         private Because of = () => result = subject.RenderPosts(new[] { post });
 
-        private It should_render_showing_age_in_terms_of_days =
+        private It should_render_showing_age_in_terms_of_whole_days =
             () => result.ShouldEqual(string.Format("{0} - {1} ({2} day(s) ago)\r\n", post.Username, post.Message, days));
     }
 

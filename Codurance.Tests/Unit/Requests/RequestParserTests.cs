@@ -60,7 +60,7 @@
         
         private It should_set_the_issuing_username_property = () => request.IssuingUsername.ShouldEqual(issuingUsername);
 
-        private It should_set_the_target_username_property = () => request.TargetUsername.ShouldEqual(issuingUsername);
+        private It should_set_the_target_username_property = () => request.TargetUsername.ShouldEqual(targetUsername);
     }
 
     public class When_parsing_a_wall_request : RequestParserTests

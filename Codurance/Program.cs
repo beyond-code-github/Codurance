@@ -13,6 +13,7 @@
 
             while (true)
             {
+                Console.Write("> ");
                 var input = Console.ReadLine();
                 Console.Write(app.Process(input));
             }

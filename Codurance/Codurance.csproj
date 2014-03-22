@@ -45,6 +45,7 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="Events\FollowEvent.cs" />
     <Compile Include="Events\IEventStore.cs" />
+    <Compile Include="Events\InMemoryEventStore.cs" />
     <Compile Include="Events\PostEvent.cs" />
     <Compile Include="IEvent.cs" />
     <Compile Include="Program.cs" />

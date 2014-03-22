@@ -5,6 +5,7 @@
     using System.Linq;
 
     using Codurance.Events;
+    using Codurance.Tests.Unit.Events;
 
     public static class TestHelpers
     {
@@ -22,11 +23,11 @@
             return start.AddDays(gen.Next(range));
         }
 
-        public static IEnumerable<FollowEvent> RandomFollowEvents(string username)
+        public static IEnumerable<FollowEvent> RandomFollowEvents(string issuingUsername)
         {
             return
                 Enumerable.Range(0, gen.Next(1, 5))
-                    .Select(o => new FollowEvent(username, RandomString(), RandomDateTime()));
+                    .Select(o => new FollowEvent(issuingUsername, RandomString(), RandomDateTime()));
         }
 
         public static IEnumerable<PostEvent> RandomPostEvents()
@@ -34,6 +35,18 @@
             return
                 Enumerable.Range(0, gen.Next(1, 5))
                     .Select(o => new PostEvent(RandomString(), RandomString(), RandomDateTime()));
+        }
+
+        public static IEnumerable<PostEvent> RandomPostEvents(string issuingUsername)
+        {
+            return
+                Enumerable.Range(0, gen.Next(1, 5))
+                    .Select(o => new PostEvent(RandomString(), issuingUsername, RandomDateTime()));
+        }
+
+        public static IEnumerable<IEvent> RandomDummyEvents()
+        {
+            return Enumerable.Range(0, gen.Next(1, 5)).Select(o => new DummyEvent());
         }
     }
 }

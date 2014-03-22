@@ -2,7 +2,7 @@
 {
     using Codurance.Aggregates;
 
-    public class ReadRequest : IRequest
+    public class ReadRequest : IRequest, IQuery
     {
         public ReadRequest(string targetUsername)
         {

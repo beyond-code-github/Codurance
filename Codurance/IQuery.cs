@@ -4,6 +4,6 @@
 
     public interface IQuery
     {
-        string Process(ISocialNetwork socialNetwork);
+        string Process(ISocialNetwork socialNetwork, IRenderingEngine renderingEngine);
     }
 }

@@ -2,7 +2,7 @@
 {
     using Codurance.Aggregates;
 
-    public class WallRequest : IRequest
+    public class WallRequest : IRequest, IQuery
     {
         public WallRequest(string targetUsername)
         {

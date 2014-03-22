@@ -14,7 +14,12 @@
 
         public static string RandomString()
         {
-            return Guid.NewGuid().ToString();
+            return string.Format("{0}", Guid.NewGuid());
+        }
+
+        public static string RandomStringWithSpaces()
+        {
+            return string.Format("{0} {0}", Guid.NewGuid());
         }
 
         public static int RandomInt(int min, int max)

@@ -16,7 +16,7 @@
         private Establish context = () =>
             {
                 issuingUsername = TestHelpers.RandomString();
-                message = TestHelpers.RandomString();
+                message = TestHelpers.RandomStringWithSpaces();
             };
 
         private Because of = () => request = (PostRequest)Subject.Parse(string.Format("{0} -> {1}", issuingUsername, message));

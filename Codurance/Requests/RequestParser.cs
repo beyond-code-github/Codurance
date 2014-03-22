@@ -1,5 +1,7 @@
 ﻿namespace Codurance.Requests
 {
+    using System;
+
     public interface IRequestParser
     {
         IRequest Parse(string input);
@@ -23,7 +25,8 @@
 
             if (IsPostRequest(parts))
             {
-                return new PostRequest(parts[2], parts[0]);
+                var postParts = input.Split(new [] { "->" }, StringSplitOptions.None);
+                return new PostRequest(postParts[1].Trim(), postParts[0].Trim());
             }
 
             return new FollowRequest(parts[0], parts[2]);

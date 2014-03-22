@@ -1,6 +1,7 @@
 ﻿namespace Codurance.Aggregates
 {
     using Codurance.Events;
+    using Codurance.Repositories;
 
     public interface ISocialNetwork
     {
@@ -17,29 +18,34 @@
     {
         private readonly IEventStore eventStore;
 
-        public SocialNetwork(IEventStore eventStore)
+        private readonly IUsersRepository usersRepository;
+
+        public SocialNetwork(IEventStore eventStore, IUsersRepository usersRepository)
         {
             this.eventStore = eventStore;
+            this.usersRepository = usersRepository;
         }
 
         public void Handle(PostEvent postEvent)
         {
-            throw new System.NotImplementedException();
+            this.eventStore.Publish(postEvent);
         }
 
         public void Handle(FollowEvent followEvent)
         {
-            throw new System.NotImplementedException();
+            this.eventStore.Publish(followEvent);
         }
 
         public string GetTimeline(string targetUsername)
         {
-            throw new System.NotImplementedException();
+            var user = this.usersRepository.GetUser(targetUsername);
+            return user.Timeline;
         }
 
         public string GetWall(string targetUsername)
         {
-            throw new System.NotImplementedException();
+            var user = this.usersRepository.GetUser(targetUsername);
+            return user.Wall;
         }
     }
 }

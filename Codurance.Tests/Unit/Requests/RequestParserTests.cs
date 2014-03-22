@@ -17,8 +17,8 @@
 
         private Establish context = () =>
             {
-                issuingUsername = Guid.NewGuid().ToString();
-                message = Guid.NewGuid().ToString();
+                issuingUsername = TestHelpers.RandomString();
+                message = TestHelpers.RandomString();
             };
 
         private Because of = () => request = (PostRequest)Subject.Parse(string.Format("{0} -> {1}", issuingUsername, message));
@@ -36,7 +36,7 @@
 
         private Establish context = () =>
         {
-            issuingUsername = Guid.NewGuid().ToString();
+            issuingUsername = TestHelpers.RandomString();
         };
 
         private Because of = () => request = (ReadRequest)Subject.Parse(string.Format("{0}", issuingUsername));
@@ -52,8 +52,8 @@
 
         private Establish context = () =>
         {
-            issuingUsername = Guid.NewGuid().ToString();
-            targetUsername = Guid.NewGuid().ToString();
+            issuingUsername = TestHelpers.RandomString();
+            targetUsername = TestHelpers.RandomString();
         };
 
         private Because of = () => request = (FollowRequest)Subject.Parse(string.Format("{0} follows {1}", issuingUsername, targetUsername));
@@ -71,7 +71,7 @@
 
         private Establish context = () =>
         {
-            targetUsername = Guid.NewGuid().ToString();
+            targetUsername = TestHelpers.RandomString();
         };
 
         private Because of = () => request = (WallRequest)Subject.Parse(string.Format("{0} wall", targetUsername));

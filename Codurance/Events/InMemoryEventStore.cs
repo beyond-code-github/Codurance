@@ -23,7 +23,7 @@
             return events.Where(o => o is FollowEvent).Cast<FollowEvent>().Where(o => o.IssuingUsername == issuingUsername);
         }
 
-        public IEnumerable<PostEvent> GetPostEvents(string[] issuingUsernames)
+        public IEnumerable<PostEvent> GetPostEvents(IEnumerable<string> issuingUsernames)
         {
             return events.Where(o => o is PostEvent).Cast<PostEvent>().Where(o => issuingUsernames.Contains(o.IssuingUsername));
         }

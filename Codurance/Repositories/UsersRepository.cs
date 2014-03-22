@@ -23,13 +23,17 @@
         public User GetUser(string username)
         {
             var ownPostEvents = this.eventStore.GetPostEvents(new[] { username });
-            var followingUserNames = this.eventStore.GetFollowEvents(username).Select(o => o.TargetUsername).ToArray();
-            var followingPostEvents = this.eventStore.GetPostEvents(followingUserNames);
+            var followEvents = this.eventStore.GetFollowEvents(username);
+
+            var wallUserNames = followEvents.Select(o => o.TargetUsername).ToList();
+            wallUserNames.Add(username);
+
+            var wallPostEvents = this.eventStore.GetPostEvents(wallUserNames);
 
             return new User
                        {
-                           Wall = ownPostEvents.Select(o => new Post(o.IssuingUsername, o.Message, o.Timestamp)),
-                           Timeline = followingPostEvents.Select(o => new Post(o.IssuingUsername, o.Message, o.Timestamp)),
+                           Wall = wallPostEvents.Select(o => new Post(o.IssuingUsername, o.Message, o.Timestamp)),
+                           Timeline = ownPostEvents.Select(o => new Post(o.IssuingUsername, o.Message, o.Timestamp))
                        };
         }
     }

@@ -1,7 +1,10 @@
 ﻿namespace Codurance.Aggregates
 {
+    using System.Collections.Generic;
+
     using Codurance.Events;
     using Codurance.Repositories;
+    using Codurance.ValueObject;
 
     public interface ISocialNetwork
     {
@@ -9,9 +12,9 @@
 
         void Handle(FollowEvent followEvent);
 
-        string GetTimeline(string targetUsername);
+        IEnumerable<Post> GetTimeline(string targetUsername);
 
-        string GetWall(string targetUsername);
+        IEnumerable<Post> GetWall(string targetUsername);
     }
 
     public class SocialNetwork : ISocialNetwork
@@ -36,13 +39,13 @@
             this.eventStore.Publish(followEvent);
         }
 
-        public string GetTimeline(string targetUsername)
+        public IEnumerable<Post> GetTimeline(string targetUsername)
         {
             var user = this.usersRepository.GetUser(targetUsername);
             return user.Timeline;
         }
 
-        public string GetWall(string targetUsername)
+        public IEnumerable<Post> GetWall(string targetUsername)
         {
             var user = this.usersRepository.GetUser(targetUsername);
             return user.Wall;

@@ -1,14 +1,17 @@
 ﻿namespace Codurance.Entities
 {
     using System;
+    using System.Collections.Generic;
+
+    using Codurance.ValueObject;
 
     public class User : IEquatable<User>
     {
         public string Username { get; set; }
 
-        public string Timeline { get; set; }
+        public IEnumerable<Post> Timeline { get; set; }
 
-        public string Wall { get; set; }
+        public IEnumerable<Post> Wall { get; set; }
 
         public bool Equals(User other)
         {

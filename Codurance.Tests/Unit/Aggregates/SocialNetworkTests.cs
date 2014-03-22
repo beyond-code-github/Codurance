@@ -1,9 +1,12 @@
 ﻿namespace Codurance.Tests.Unit.Aggregates
 {
+    using System.Collections.Generic;
+
     using Codurance.Aggregates;
     using Codurance.Entities;
     using Codurance.Events;
     using Codurance.Repositories;
+    using Codurance.ValueObject;
 
     using Machine.Fakes;
     using Machine.Specifications;
@@ -52,11 +55,17 @@
     {
         private static User user;
 
-        private static string result;
+        private static IEnumerable<Post> result;
 
         private Establish context = () =>
             {
-                user = new User { Username = TestHelpers.RandomString(), Timeline = TestHelpers.RandomString() };
+                user = new User
+                           {
+                               Username = TestHelpers.RandomString(),
+                               Timeline = TestHelpers.RandomPosts(),
+                               Wall = TestHelpers.RandomPosts()
+                           };
+
                 The<IUsersRepository>().WhenToldTo(o => o.GetUser(user.Username)).Return(user);
             };
 
@@ -69,13 +78,19 @@
     {
         private static User user;
 
-        private static string result;
+        private static IEnumerable<Post> result;
 
         private Establish context = () =>
-        {
-            user = new User { Username = TestHelpers.RandomString(), Timeline = TestHelpers.RandomString() };
-            The<IUsersRepository>().WhenToldTo(o => o.GetUser(user.Username)).Return(user);
-        };
+            {
+                user = new User
+                           {
+                               Username = TestHelpers.RandomString(),
+                               Timeline = TestHelpers.RandomPosts(),
+                               Wall = TestHelpers.RandomPosts()
+                           };
+
+                The<IUsersRepository>().WhenToldTo(o => o.GetUser(user.Username)).Return(user);
+            };
 
         private Because of = () => result = Subject.GetWall(user.Username);
 

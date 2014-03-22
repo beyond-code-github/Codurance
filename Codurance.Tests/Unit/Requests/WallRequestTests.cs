@@ -1,7 +1,10 @@
 ﻿namespace Codurance.Tests.Unit.Requests
 {
+    using System.Collections.Generic;
+
     using Codurance.Aggregates;
     using Codurance.Requests;
+    using Codurance.ValueObject;
 
     using Machine.Fakes;
     using Machine.Specifications;
@@ -10,16 +13,19 @@
     {
         protected static WallRequest subject;
 
-        private static string targetUsername;
+        protected static string targetUsername, renderOutput;
 
-        protected static string wall;
+        protected static IEnumerable<Post> wallPosts;
 
         private Establish context = () =>
             {
                 targetUsername = TestHelpers.RandomString();
-                wall = TestHelpers.RandomString();
+                wallPosts = TestHelpers.RandomPosts();
 
-                The<ISocialNetwork>().WhenToldTo(o => o.GetWall(targetUsername)).Return(wall);
+                renderOutput = TestHelpers.RandomString();
+
+                The<ISocialNetwork>().WhenToldTo(o => o.GetWall(targetUsername)).Return(wallPosts);
+                The<IRenderingEngine>().WhenToldTo(o => o.RenderPosts(wallPosts)).Return(renderOutput);
 
                 subject = new WallRequest(targetUsername);
             };
@@ -30,8 +36,8 @@
     {
         private static string result;
 
-        private Because of = () => result = subject.Process(The<ISocialNetwork>());
+        private Because of = () => result = subject.Process(The<ISocialNetwork>(), The<IRenderingEngine>());
 
-        private It should_query_the_aggregate_for_the_relevant_wall = () => result.ShouldEqual(wall);
+        private It should_query_the_aggregate_for_the_relevant_wall = () => result.ShouldEqual(renderOutput);
     }
 }

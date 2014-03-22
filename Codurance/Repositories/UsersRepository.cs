@@ -4,6 +4,7 @@
 
     using Codurance.Entities;
     using Codurance.Events;
+    using Codurance.ValueObject;
 
     public interface IUsersRepository
     {
@@ -27,8 +28,8 @@
 
             return new User
                        {
-                           Wall = string.Join("\n", ownPostEvents),
-                           Timeline = string.Join("\n", followingPostEvents)
+                           Wall = ownPostEvents.Select(o => new Post(o.IssuingUsername, o.Message, o.Timestamp)),
+                           Timeline = followingPostEvents.Select(o => new Post(o.IssuingUsername, o.Message, o.Timestamp)),
                        };
         }
     }

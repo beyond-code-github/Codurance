@@ -11,9 +11,9 @@
 
         public string TargetUsername { get; private set; }
 
-        public string Process(ISocialNetwork socialNetwork)
+        public string Process(ISocialNetwork socialNetwork, IRenderingEngine renderingEngine)
         {
-            return socialNetwork.GetTimeline(this.TargetUsername);
+            return renderingEngine.RenderPosts(socialNetwork.GetTimeline(this.TargetUsername));
         }
     }
 }

@@ -6,6 +6,7 @@
 
     using Codurance.Events;
     using Codurance.Tests.Unit.Events;
+    using Codurance.ValueObject;
 
     public static class TestHelpers
     {
@@ -47,6 +48,11 @@
         public static IEnumerable<IEvent> RandomDummyEvents()
         {
             return Enumerable.Range(0, gen.Next(1, 5)).Select(o => new DummyEvent()).ToList();
+        }
+
+        public static IEnumerable<Post> RandomPosts()
+        {
+            return Enumerable.Range(0, gen.Next(1, 5)).Select(o => new Post(RandomString(), RandomString(), RandomDateTime())).ToList();
         }
     }
 }

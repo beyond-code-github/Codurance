@@ -6,10 +6,11 @@
     using Codurance.Entities;
     using Codurance.Events;
     using Codurance.Repositories;
+    using Codurance.ValueObject;
 
     using Machine.Fakes;
     using Machine.Specifications;
-    
+
     public class When_getting_a_user : WithSubject<UsersRepository>
     {
         private static User user;
@@ -21,7 +22,7 @@
         private static IEnumerable<PostEvent> ownPostEvents, followerPostEvents;
 
         private static string[] followingUsers;
-        
+
         private Establish context = () =>
             {
                 username = TestHelpers.RandomString();
@@ -33,16 +34,16 @@
                 followingUsers = followEvents.Select(o => o.TargetUsername).ToArray();
 
                 The<IEventStore>().WhenToldTo(o => o.GetFollowEvents(username)).Return(followEvents);
-                The<IEventStore>().WhenToldTo(o => o.GetPostEvents(new [] { username })).Return(ownPostEvents);
+                The<IEventStore>().WhenToldTo(o => o.GetPostEvents(new[] { username })).Return(ownPostEvents);
                 The<IEventStore>().WhenToldTo(o => o.GetPostEvents(followingUsers)).Return(followerPostEvents);
             };
 
         private Because of = () => user = Subject.GetUser(username);
 
         private It should_build_the_users_wall =
-            () => user.Wall.ShouldEqual(string.Join("\n", ownPostEvents));
+            () => user.Wall.ShouldEqual(ownPostEvents.Select(o => new Post(o.IssuingUsername, o.Message, o.Timestamp)));
 
         private It should_build_the_users_timeline =
-            () => user.Timeline.ShouldEqual(string.Join("\n", followerPostEvents));
+            () => user.Timeline.ShouldEqual(followerPostEvents.Select(o => new Post(o.IssuingUsername, o.Message, o.Timestamp)));
     }
 }

@@ -1,0 +1,109 @@
+﻿namespace Codurance.Tests.Unit
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using Codurance.ValueObjects;
+
+    using Machine.Fakes;
+    using Machine.Specifications;
+
+    public abstract class RenderingEngineTests : WithSubject<RenderingEngine>
+    {
+        protected static string result, username, message;
+
+        protected static DateTime snapshot;
+
+        protected static Post post;
+
+        private Establish context = () =>
+            {
+                snapshot = TestHelpers.RandomDateTime();
+                username = TestHelpers.RandomString();
+                message = TestHelpers.RandomString();
+            };
+    }
+
+    public class When_rendering_a_post_made_seconds_ago : RenderingEngineTests
+    {
+        private static int seconds;
+
+        private Establish context = () =>
+            {
+                seconds = TestHelpers.RandomInt(1, 59);
+                post = new Post(username, message, snapshot.AddSeconds(-seconds));
+            };
+
+        private Because of = () => result = Subject.RenderPosts(new[] { post });
+
+        private It should_render_showing_age_in_terms_of_seconds =
+            () => result.ShouldEqual(string.Format("{0} - {1} ({2} seconds ago)"));
+    }
+
+    public class When_rendering_a_post_made_minutes_ago : RenderingEngineTests
+    {
+        private static int minutes;
+
+        private Establish context = () =>
+        {
+            minutes = TestHelpers.RandomInt(1, 59);
+            post = new Post(username, message, snapshot.AddMinutes(-minutes));
+        };
+
+        private Because of = () => result = Subject.RenderPosts(new[] { post });
+
+        private It should_render_showing_age_in_terms_of_minutes =
+            () => result.ShouldEqual(string.Format("{0} - {1} ({2} minutes ago)"));
+    }
+
+    public class When_rendering_a_post_made_hours_ago : RenderingEngineTests
+    {
+        private static int hours;
+
+        private Establish context = () =>
+        {
+            hours = TestHelpers.RandomInt(1, 59);
+            post = new Post(username, message, snapshot.AddHours(-hours));
+        };
+
+        private Because of = () => result = Subject.RenderPosts(new[] { post });
+
+        private It should_render_showing_age_in_terms_of_hours =
+            () => result.ShouldEqual(string.Format("{0} - {1} ({2} hours ago)"));
+    }
+
+    public class When_rendering_a_post_made_days_ago : RenderingEngineTests
+    {
+        private static int days;
+
+        private Establish context = () =>
+        {
+            days = TestHelpers.RandomInt(1, 59);
+            post = new Post(username, message, snapshot.AddDays(-days));
+        };
+
+        private Because of = () => result = Subject.RenderPosts(new[] { post });
+
+        private It should_render_showing_age_in_terms_of_days =
+            () => result.ShouldEqual(string.Format("{0} - {1} ({2} days ago)"));
+    }
+
+    public class When_rendering_multiple_posts : RenderingEngineTests
+    {
+        private static int days;
+
+        private static IEnumerable<Post> posts;
+
+        private Establish context = () =>
+        {
+            days = TestHelpers.RandomInt(1, 59);
+            posts = TestHelpers.RandomPosts(snapshot.AddDays(-days));
+        };
+
+        private Because of = () => result = Subject.RenderPosts(posts);
+
+        private It should_render_the_correct_number_of_rows =
+            () => result.Split('\n').Count().ShouldEqual(posts.Count());
+    }
+}

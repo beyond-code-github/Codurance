@@ -72,6 +72,7 @@
     <Compile Include="TestHelpers.cs" />
     <Compile Include="Unit\Aggregates\SocialNetworkTests.cs" />
     <Compile Include="Unit\Events\InMemoryEventStoreTests.cs" />
+    <Compile Include="Unit\RenderingEngineTests.cs" />
     <Compile Include="Unit\Repositories\UsersRepositoryTests.cs" />
     <Compile Include="Unit\Requests\FollowRequestTests.cs" />
     <Compile Include="Unit\Requests\PostRequestTests.cs" />

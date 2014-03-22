@@ -17,6 +17,11 @@
             return Guid.NewGuid().ToString();
         }
 
+        public static int RandomInt(int min, int max)
+        {
+            return gen.Next(min, max);
+        }
+
         public static DateTime RandomDateTime()
         {
             var start = new DateTime(1995, 1, 1);
@@ -53,6 +58,11 @@
         public static IEnumerable<Post> RandomPosts()
         {
             return Enumerable.Range(0, gen.Next(1, 5)).Select(o => new Post(RandomString(), RandomString(), RandomDateTime())).ToList();
+        }
+
+        public static IEnumerable<Post> RandomPosts(DateTime timestamp)
+        {
+            return Enumerable.Range(0, gen.Next(1, 5)).Select(o => new Post(RandomString(), RandomString(), timestamp)).ToList();
         }
     }
 }

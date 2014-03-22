@@ -40,8 +40,8 @@
             {
                 foreach (var input in inputs)
                 {
-                    builder.AppendLine("> " + input.Command);
                     currentTime = input.Time;
+                    builder.AppendLine("> " + input.Command);
                     builder.Append(app.Process(input.Command));
                 }
             };

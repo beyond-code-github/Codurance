@@ -1,6 +1,11 @@
 ﻿namespace Codurance.Requests
 {
-    public class RequestParser
+    public interface IRequestParser
+    {
+        IRequest Parse(string input);
+    }
+
+    public class RequestParser : IRequestParser
     {
         public IRequest Parse(string input)
         {

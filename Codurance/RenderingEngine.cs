@@ -8,7 +8,9 @@
 
     public interface IRenderingEngine
     {
-        string RenderPosts(IEnumerable<Post> posts);
+        string RenderWallPosts(IEnumerable<Post> posts);
+
+        string RenderTimelinePosts(IEnumerable<Post> posts);
     }
 
     public class RenderingEngine : IRenderingEngine
@@ -20,7 +22,21 @@
             this.timestampProvider = timestampProvider;
         }
 
-        public string RenderPosts(IEnumerable<Post> posts)
+        public string RenderTimelinePosts(IEnumerable<Post> posts)
+        {
+            var now = timestampProvider();
+            var builder = new StringBuilder();
+
+            foreach (var post in posts)
+            {
+                builder.AppendLine(
+                    string.Format("{0} ({1})", post.Message, this.PostAge(now, post.Timestamp)));
+            }
+
+            return builder.ToString();
+        }
+
+        public string RenderWallPosts(IEnumerable<Post> posts)
         {
             var now = timestampProvider();
             var builder = new StringBuilder();

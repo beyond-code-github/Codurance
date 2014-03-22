@@ -25,7 +25,7 @@
                 renderOutput = TestHelpers.RandomString();
 
                 The<ISocialNetwork>().WhenToldTo(o => o.GetTimeline(targetUsername)).Return(timelinePosts);
-                The<IRenderingEngine>().WhenToldTo(o => o.RenderPosts(timelinePosts)).Return(renderOutput);
+                The<IRenderingEngine>().WhenToldTo(o => o.RenderTimelinePosts(timelinePosts)).Return(renderOutput);
 
                 subject = new ReadRequest(targetUsername);
             };

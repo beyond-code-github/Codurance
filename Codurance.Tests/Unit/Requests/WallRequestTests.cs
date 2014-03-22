@@ -25,7 +25,7 @@
                 renderOutput = TestHelpers.RandomString();
 
                 The<ISocialNetwork>().WhenToldTo(o => o.GetWall(targetUsername)).Return(wallPosts);
-                The<IRenderingEngine>().WhenToldTo(o => o.RenderPosts(wallPosts)).Return(renderOutput);
+                The<IRenderingEngine>().WhenToldTo(o => o.RenderWallPosts(wallPosts)).Return(renderOutput);
 
                 subject = new WallRequest(targetUsername);
             };

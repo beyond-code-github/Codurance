@@ -13,7 +13,7 @@
 
         public string Process(ISocialNetwork socialNetwork, IRenderingEngine renderingEngine)
         {
-            return renderingEngine.RenderPosts(socialNetwork.GetTimeline(this.TargetUsername));
+            return renderingEngine.RenderTimelinePosts(socialNetwork.GetTimeline(this.TargetUsername));
         }
     }
 }

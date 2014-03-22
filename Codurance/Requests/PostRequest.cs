@@ -3,6 +3,7 @@
     using System;
 
     using Codurance.Aggregates;
+    using Codurance.Events;
 
     public class PostRequest : IRequest, ICommand
     {
@@ -18,7 +19,7 @@
 
         public void Process(ISocialNetwork socialNetwork, Func<DateTime> timestampProvider)
         {
-            throw new System.NotImplementedException();
+            socialNetwork.Handle(new PostEvent(this.Message, this.IssuingUsername, timestampProvider()));
         }
     }
 }

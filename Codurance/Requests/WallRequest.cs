@@ -13,7 +13,7 @@
 
         public string Process(ISocialNetwork socialNetwork)
         {
-            throw new System.NotImplementedException();
+            return socialNetwork.GetWall(this.TargetUsername);
         }
     }
 }

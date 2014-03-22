@@ -3,6 +3,7 @@
     using System;
 
     using Codurance.Aggregates;
+    using Codurance.Events;
 
     public class FollowRequest : IRequest, ICommand
     {
@@ -18,7 +19,7 @@
 
         public void Process(ISocialNetwork socialNetwork, Func<DateTime> timestampProvider)
         {
-            throw new NotImplementedException();
+            socialNetwork.Handle(new FollowEvent(this.IssuingUsername, this.TargetUsername, timestampProvider()));
         }
     }
 }

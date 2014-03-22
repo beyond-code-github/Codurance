@@ -27,26 +27,26 @@
         {
             return
                 Enumerable.Range(0, gen.Next(1, 5))
-                    .Select(o => new FollowEvent(issuingUsername, RandomString(), RandomDateTime()));
+                    .Select(o => new FollowEvent(issuingUsername, RandomString(), RandomDateTime())).ToList();
         }
 
         public static IEnumerable<PostEvent> RandomPostEvents()
         {
             return
                 Enumerable.Range(0, gen.Next(1, 5))
-                    .Select(o => new PostEvent(RandomString(), RandomString(), RandomDateTime()));
+                    .Select(o => new PostEvent(RandomString(), RandomString(), RandomDateTime())).ToList();
         }
 
         public static IEnumerable<PostEvent> RandomPostEvents(string issuingUsername)
         {
             return
                 Enumerable.Range(0, gen.Next(1, 5))
-                    .Select(o => new PostEvent(RandomString(), issuingUsername, RandomDateTime()));
+                    .Select(o => new PostEvent(RandomString(), issuingUsername, RandomDateTime())).ToList();
         }
 
         public static IEnumerable<IEvent> RandomDummyEvents()
         {
-            return Enumerable.Range(0, gen.Next(1, 5)).Select(o => new DummyEvent());
+            return Enumerable.Range(0, gen.Next(1, 5)).Select(o => new DummyEvent()).ToList();
         }
     }
 }

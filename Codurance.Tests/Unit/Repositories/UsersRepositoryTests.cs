@@ -6,7 +6,7 @@
     using Codurance.Entities;
     using Codurance.Events;
     using Codurance.Repositories;
-    using Codurance.ValueObject;
+    using Codurance.ValueObjects;
 
     using Machine.Fakes;
     using Machine.Specifications;

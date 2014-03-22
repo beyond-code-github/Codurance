@@ -4,7 +4,7 @@
 
     using Codurance.Events;
     using Codurance.Repositories;
-    using Codurance.ValueObject;
+    using Codurance.ValueObjects;
 
     public interface ISocialNetwork
     {

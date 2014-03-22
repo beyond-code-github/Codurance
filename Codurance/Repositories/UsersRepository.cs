@@ -4,7 +4,7 @@
 
     using Codurance.Entities;
     using Codurance.Events;
-    using Codurance.ValueObject;
+    using Codurance.ValueObjects;
 
     public interface IUsersRepository
     {

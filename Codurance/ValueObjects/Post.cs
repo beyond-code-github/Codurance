@@ -1,4 +1,4 @@
-﻿namespace Codurance.ValueObject
+﻿namespace Codurance.ValueObjects
 {
     using System;
 
@@ -44,7 +44,7 @@
             {
                 return false;
             }
-            return Equals((Post)obj);
+            return this.Equals((Post)obj);
         }
 
         public override int GetHashCode()

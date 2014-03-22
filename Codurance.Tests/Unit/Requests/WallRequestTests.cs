@@ -4,7 +4,7 @@
 
     using Codurance.Aggregates;
     using Codurance.Requests;
-    using Codurance.ValueObject;
+    using Codurance.ValueObjects;
 
     using Machine.Fakes;
     using Machine.Specifications;

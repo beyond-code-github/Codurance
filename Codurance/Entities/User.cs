@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
 
-    using Codurance.ValueObject;
+    using Codurance.ValueObjects;
 
     public class User : IEquatable<User>
     {

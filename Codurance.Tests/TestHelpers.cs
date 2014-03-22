@@ -6,7 +6,7 @@
 
     using Codurance.Events;
     using Codurance.Tests.Unit.Events;
-    using Codurance.ValueObject;
+    using Codurance.ValueObjects;
 
     public static class TestHelpers
     {

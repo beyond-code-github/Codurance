@@ -8,6 +8,8 @@
 
         IEnumerable<FollowEvent> GetFollowEvents(string issuingUsername);
 
+        IEnumerable<PostEvent> GetPostEvents(string issuingUsername);
+
         IEnumerable<PostEvent> GetPostEvents(IEnumerable<string> issuingUsernames);
     }
 }

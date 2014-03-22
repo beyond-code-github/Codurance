@@ -7,22 +7,22 @@
 
     public class Behavior
     {
-        private static CoduranceApp app;
+        private static dynamic [] inputs;
 
         private static StringBuilder builder;
 
-        private static dynamic [] inputs;
+        private static CoduranceApp app;
 
         protected static DateTime currentTime;
 
         private Establish context = () =>
             {
+                var timestamp = TestHelpers.RandomDateTime();
+
                 builder = new StringBuilder();
                 app = new CoduranceApp(new Bootstrapper { TimestampProvider = () => currentTime });
 
-                var timestamp = TestHelpers.RandomDateTime();
-
-                inputs = new [] {
+                inputs = new dynamic[] {
                         new { Command = "Alice -> I love the weather today", Time = timestamp.AddMinutes(-5.9) },
                         new { Command = "Bob -> Damn! We lost!", Time = timestamp.AddMinutes(-2.9) },
                         new { Command = "Bob -> Good game though.", Time = timestamp.AddMinutes(-1.9) },

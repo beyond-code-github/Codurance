@@ -30,8 +30,7 @@
                 subject = new WallRequest(targetUsername);
             };
     }
-
-
+    
     public class When_processing_a_wall_request : WallRequestTests
     {
         private static string result;

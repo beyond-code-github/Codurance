@@ -11,11 +11,9 @@
 
         private readonly IRequestParser requestParser;
 
-        private readonly Func<DateTime> timestampProvider;
-
         private readonly IRenderingEngine renderingEngine;
 
-        public CoduranceApp() : this(new Bootstrapper()) { }
+        private readonly Func<DateTime> timestampProvider;
 
         public CoduranceApp(Bootstrapper bootstrapper)
         {
@@ -24,7 +22,12 @@
             this.timestampProvider = bootstrapper.TimestampProvider;
             this.renderingEngine = bootstrapper.RenderingEngine();
         }
-        
+
+        public CoduranceApp()
+            : this(new Bootstrapper())
+        {
+        }
+
         public string Process(string input)
         {
             var request = this.requestParser.Parse(input);

@@ -38,21 +38,24 @@
         {
             return
                 Enumerable.Range(0, gen.Next(1, 5))
-                    .Select(o => new FollowEvent(issuingUsername, RandomString(), RandomDateTime())).ToList();
+                    .Select(o => new FollowEvent(issuingUsername, RandomString(), RandomDateTime()))
+                    .ToList();
         }
 
         public static IEnumerable<PostEvent> RandomPostEvents()
         {
             return
                 Enumerable.Range(0, gen.Next(1, 5))
-                    .Select(o => new PostEvent(RandomString(), RandomString(), RandomDateTime())).ToList();
+                    .Select(o => new PostEvent(RandomString(), RandomString(), RandomDateTime()))
+                    .ToList();
         }
 
         public static IEnumerable<PostEvent> RandomPostEvents(string issuingUsername)
         {
             return
                 Enumerable.Range(0, gen.Next(1, 5))
-                    .Select(o => new PostEvent(RandomString(), issuingUsername, RandomDateTime())).ToList();
+                    .Select(o => new PostEvent(RandomString(), issuingUsername, RandomDateTime()))
+                    .ToList();
         }
 
         public static IEnumerable<IEvent> RandomDummyEvents()
@@ -62,12 +65,18 @@
 
         public static IEnumerable<Post> RandomPosts()
         {
-            return Enumerable.Range(0, gen.Next(1, 5)).Select(o => new Post(RandomString(), RandomString(), RandomDateTime())).ToList();
+            return
+                Enumerable.Range(0, gen.Next(1, 5))
+                    .Select(o => new Post(RandomString(), RandomString(), RandomDateTime()))
+                    .ToList();
         }
 
         public static IEnumerable<Post> RandomPosts(DateTime timestamp)
         {
-            return Enumerable.Range(0, gen.Next(1, 5)).Select(o => new Post(RandomString(), RandomString(), timestamp)).ToList();
+            return
+                Enumerable.Range(0, gen.Next(1, 5))
+                    .Select(o => new Post(RandomString(), RandomString(), timestamp))
+                    .ToList();
         }
     }
 }

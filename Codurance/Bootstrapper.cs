@@ -11,24 +11,20 @@
     {
         public Bootstrapper()
         {
-            this.TimestampProvider = () => DateTime.Now;
-
             var eventStore = new InMemoryEventStore();
+
             this.EventStore = () => eventStore;
-
-            this.UsersRepository = () => new UsersRepository(this.EventStore());
-
-            this.SocialNetwork = () => new SocialNetwork(this.EventStore(), this.UsersRepository());
-
+            this.TimestampProvider = () => DateTime.Now;
             this.RequestParser = () => new RequestParser();
-
+            this.UsersRepository = () => new UsersRepository(this.EventStore());
+            this.SocialNetwork = () => new SocialNetwork(this.EventStore(), this.UsersRepository());
             this.RenderingEngine = () => new RenderingEngine(this.TimestampProvider);
         }
 
+        public Func<DateTime> TimestampProvider { get; set; }
+
         public Func<IRequestParser> RequestParser { get; set; }
 
-        public Func<DateTime> TimestampProvider { get; set; }
-        
         public Func<IEventStore> EventStore { get; set; }
 
         public Func<IUsersRepository> UsersRepository { get; set; }

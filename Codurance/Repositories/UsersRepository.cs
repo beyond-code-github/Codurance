@@ -22,7 +22,7 @@
 
         public User GetUser(string username)
         {
-            var ownPostEvents = this.eventStore.GetPostEvents(new[] { username });
+            var timelineEvents = this.eventStore.GetPostEvents(username);
             var followEvents = this.eventStore.GetFollowEvents(username);
 
             var wallUserNames = followEvents.Select(o => o.TargetUsername).ToList();
@@ -33,7 +33,7 @@
             return new User
                        {
                            Wall = wallPostEvents.Select(o => new Post(o.IssuingUsername, o.Message, o.Timestamp)),
-                           Timeline = ownPostEvents.Select(o => new Post(o.IssuingUsername, o.Message, o.Timestamp))
+                           Timeline = timelineEvents.Select(o => new Post(o.IssuingUsername, o.Message, o.Timestamp))
                        };
         }
     }

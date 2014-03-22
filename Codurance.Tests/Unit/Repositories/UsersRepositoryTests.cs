@@ -19,24 +19,24 @@
 
         private static IEnumerable<FollowEvent> followEvents;
 
-        private static IEnumerable<PostEvent> ownPostEvents, wallPostEvents;
+        private static IEnumerable<PostEvent> timelineEvents, wallPostEvents;
 
-        private static List<string> usersToIncludeOnWall;
+        private static List<string> wallUserNames;
 
         private Establish context = () =>
             {
                 username = TestHelpers.RandomString();
 
                 followEvents = TestHelpers.RandomFollowEvents(username).ToList();
-                ownPostEvents = TestHelpers.RandomPostEvents().ToList();
+                timelineEvents = TestHelpers.RandomPostEvents().ToList();
                 wallPostEvents = TestHelpers.RandomPostEvents().ToList();
 
-                usersToIncludeOnWall = followEvents.Select(o => o.TargetUsername).ToList();
-                usersToIncludeOnWall.Add(username);
+                wallUserNames = followEvents.Select(o => o.TargetUsername).ToList();
+                wallUserNames.Add(username);
                 
                 The<IEventStore>().WhenToldTo(o => o.GetFollowEvents(username)).Return(followEvents);
-                The<IEventStore>().WhenToldTo(o => o.GetPostEvents(new[] { username })).Return(ownPostEvents);
-                The<IEventStore>().WhenToldTo(o => o.GetPostEvents(usersToIncludeOnWall)).Return(wallPostEvents);
+                The<IEventStore>().WhenToldTo(o => o.GetPostEvents(username)).Return(timelineEvents);
+                The<IEventStore>().WhenToldTo(o => o.GetPostEvents(wallUserNames)).Return(wallPostEvents);
             };
 
         private Because of = () => user = Subject.GetUser(username);
@@ -45,6 +45,6 @@
             () => user.Wall.ShouldEqual(wallPostEvents.Select(o => new Post(o.IssuingUsername, o.Message, o.Timestamp)));
 
         private It should_build_the_users_timeline =
-            () => user.Timeline.ShouldEqual(ownPostEvents.Select(o => new Post(o.IssuingUsername, o.Message, o.Timestamp)));
+            () => user.Timeline.ShouldEqual(timelineEvents.Select(o => new Post(o.IssuingUsername, o.Message, o.Timestamp)));
     }
 }

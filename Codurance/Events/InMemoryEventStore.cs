@@ -6,16 +6,16 @@
 
     public class InMemoryEventStore : IEventStore
     {
-        private readonly ConcurrentQueue<IEvent> events;
+        private readonly ConcurrentStack<IEvent> events;
 
         public InMemoryEventStore()
         {
-            this.events = new ConcurrentQueue<IEvent>();
+            this.events = new ConcurrentStack<IEvent>();
         }
 
         public void Publish(IEvent postEvent)
         {
-            events.Enqueue(postEvent);
+            events.Push(postEvent);
         }
 
         public IEnumerable<FollowEvent> GetFollowEvents(string issuingUsername)

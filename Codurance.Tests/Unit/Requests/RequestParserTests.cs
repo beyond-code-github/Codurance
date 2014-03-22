@@ -1,7 +1,5 @@
 ﻿namespace Codurance.Tests.Unit.Requests
 {
-    using System;
-
     using Codurance.Requests;
 
     using Machine.Fakes;

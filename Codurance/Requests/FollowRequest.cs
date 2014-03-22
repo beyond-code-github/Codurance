@@ -1,6 +1,10 @@
 ﻿namespace Codurance.Requests
 {
-    public class FollowRequest : IRequest
+    using System;
+
+    using Codurance.Aggregates;
+
+    public class FollowRequest : IRequest, ICommand
     {
         public FollowRequest(string issuingUsername, string targetUsername)
         {
@@ -11,5 +15,10 @@
         public string IssuingUsername { get; private set; }
 
         public string TargetUsername { get; private set; }
+
+        public void Process(ISocialNetwork socialNetwork, Func<DateTime> timestampProvider)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

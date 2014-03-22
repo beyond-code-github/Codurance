@@ -1,6 +1,10 @@
 ﻿namespace Codurance.Requests
 {
-    public class PostRequest : IRequest
+    using System;
+
+    using Codurance.Aggregates;
+
+    public class PostRequest : IRequest, ICommand
     {
         public PostRequest(string message, string issuingUsername)
         {
@@ -11,5 +15,10 @@
         public string Message { get; private set; }
 
         public string IssuingUsername { get; private set; }
+
+        public void Process(ISocialNetwork socialNetwork, Func<DateTime> timestampProvider)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

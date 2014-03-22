@@ -1,7 +1,6 @@
-﻿namespace Codurance.Requests
+﻿namespace Codurance
 {
     public interface IRequest
     {
-        
     }
 }

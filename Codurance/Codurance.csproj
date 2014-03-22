@@ -41,10 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aggregates\SocialNetwork.cs" />
+    <Compile Include="Events\FollowEvent.cs" />
+    <Compile Include="Events\PostEvent.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\FollowRequest.cs" />
-    <Compile Include="Requests\IRequest.cs" />
+    <Compile Include="ICommand.cs" />
+    <Compile Include="IQuery.cs" />
+    <Compile Include="IRequest.cs" />
     <Compile Include="Requests\PostRequest.cs" />
     <Compile Include="Requests\RequestParser.cs" />
     <Compile Include="Requests\ReadRequest.cs" />

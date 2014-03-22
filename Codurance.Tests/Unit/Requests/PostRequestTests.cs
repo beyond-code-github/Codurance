@@ -1,7 +1,6 @@
 ﻿namespace Codurance.Tests.Unit.Requests
 {
     using System;
-    using System.Runtime.Remoting.Messaging;
 
     using Codurance.Aggregates;
     using Codurance.Events;
@@ -16,19 +15,19 @@
 
         protected static Func<DateTime> timestampProvider;
         
-        protected static string message, issuingUserName;
+        protected static string message, issuingUsername;
         
         protected static DateTime timestamp;
 
         private Establish context = () =>
             {
                 message = Guid.NewGuid().ToString();
-                issuingUserName = Guid.NewGuid().ToString();
+                issuingUsername = Guid.NewGuid().ToString();
 
                 timestamp = TestHelpers.RandomDateTime();
                 timestampProvider = () => timestamp;
 
-                subject = new PostRequest(message, issuingUserName);
+                subject = new PostRequest(message, issuingUsername);
             };
     }
 

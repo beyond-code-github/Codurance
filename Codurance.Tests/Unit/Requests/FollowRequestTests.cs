@@ -15,19 +15,19 @@
 
         protected static Func<DateTime> timestampProvider;
 
-        protected static string issuingUserName, targetUsername;
+        protected static string issuingUsername, targetUsername;
 
         protected static DateTime timestamp;
 
         private Establish context = () =>
             {
-                issuingUserName = TestHelpers.RandomString();
+                issuingUsername = TestHelpers.RandomString();
                 targetUsername = TestHelpers.RandomString();
 
                 timestamp = TestHelpers.RandomDateTime();
                 timestampProvider = () => timestamp;
 
-                subject = new FollowRequest(issuingUserName, targetUsername);
+                subject = new FollowRequest(issuingUsername, targetUsername);
             };
     }
 

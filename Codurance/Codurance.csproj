@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aggregates\SocialNetwork.cs" />
+    <Compile Include="Bootstrapper.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Events\FollowEvent.cs" />
     <Compile Include="Events\IEventStore.cs" />

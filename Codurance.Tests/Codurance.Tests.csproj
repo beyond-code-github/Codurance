@@ -68,6 +68,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Behavior.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestHelpers.cs" />
     <Compile Include="Unit\Aggregates\SocialNetworkTests.cs" />
@@ -80,9 +81,7 @@
     <Compile Include="Unit\Requests\ReadRequestTests.cs" />
     <Compile Include="Unit\Requests\RequestParserTests.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Behavior\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />

@@ -6,7 +6,6 @@
 
     using Codurance.ValueObjects;
 
-    using Machine.Fakes;
     using Machine.Specifications;
 
     public abstract class RenderingEngineTests

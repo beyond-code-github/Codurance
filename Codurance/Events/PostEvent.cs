@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class PostEvent : IEquatable<PostEvent>
+    public class PostEvent : IEvent, IEquatable<PostEvent>
     {
         public PostEvent(string message, string issuingUsername, DateTime timestamp)
         {

@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestHelpers.cs" />
+    <Compile Include="Unit\Aggregates\SocialNetworkTests.cs" />
     <Compile Include="Unit\Requests\FollowRequestTests.cs" />
     <Compile Include="Unit\Requests\PostRequestTests.cs" />
     <Compile Include="Unit\Requests\WallRequestTests.cs" />

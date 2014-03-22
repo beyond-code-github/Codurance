@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class FollowEvent : IEquatable<FollowEvent>
+    public class FollowEvent : IEvent, IEquatable<FollowEvent>
     {
         public FollowEvent(string issuingUsername, string targetUsername, DateTime timestamp)
         {

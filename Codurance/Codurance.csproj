@@ -42,10 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aggregates\SocialNetwork.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="Events\FollowEvent.cs" />
+    <Compile Include="Events\IEventStore.cs" />
     <Compile Include="Events\PostEvent.cs" />
+    <Compile Include="IEvent.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\UsersRepository.cs" />
     <Compile Include="Requests\FollowRequest.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="IQuery.cs" />

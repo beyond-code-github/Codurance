@@ -15,6 +15,13 @@
 
     public class SocialNetwork : ISocialNetwork
     {
+        private readonly IEventStore eventStore;
+
+        public SocialNetwork(IEventStore eventStore)
+        {
+            this.eventStore = eventStore;
+        }
+
         public void Handle(PostEvent postEvent)
         {
             throw new System.NotImplementedException();

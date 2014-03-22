@@ -46,7 +46,8 @@
     <Compile Include="Requests\FollowRequest.cs" />
     <Compile Include="Requests\IRequest.cs" />
     <Compile Include="Requests\PostRequest.cs" />
-    <Compile Include="Requests\TimelineRequest.cs" />
+    <Compile Include="Requests\RequestParser.cs" />
+    <Compile Include="Requests\ReadRequest.cs" />
     <Compile Include="Requests\WallRequest.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,8 +1,8 @@
 ﻿namespace Codurance.Requests
 {
-    public class WallRequest : IRequest
+    public class ReadRequest : IRequest
     {
-        public WallRequest(string targetUsername)
+        public ReadRequest(string targetUsername)
         {
             this.TargetUsername = targetUsername;
         }

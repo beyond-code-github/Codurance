@@ -45,7 +45,6 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Handlers\InputHandler.cs" />
     <Compile Include="Events\FollowEvent.cs" />
-    <Compile Include="Events\IEventStore.cs" />
     <Compile Include="Events\InMemoryEventStore.cs" />
     <Compile Include="Events\PostEvent.cs" />
     <Compile Include="Handlers\InputHandlerFactory.cs" />

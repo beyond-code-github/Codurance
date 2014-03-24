@@ -22,7 +22,8 @@
         public IEnumerable<PostViewModel> GetTimelineForUser(string username)
         {
             return
-                this.eventStore.GetPostEvents(username).Select(o => new PostViewModel(o.IssuingUsername, o.Message, o.Timestamp));
+                this.eventStore.GetPostEvents(username)
+                    .Select(o => new PostViewModel(o.IssuingUsername, o.Message, o.Timestamp));
         }
 
         public IEnumerable<PostViewModel> GetWallForUser(string username)

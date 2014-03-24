@@ -52,7 +52,10 @@
             if (followRequest != null)
             {
                 this.socialNetwork.Handle(
-                    new FollowEvent(followRequest.IssuingUsername, followRequest.TargetUsername, this.timestampProvider()));
+                    new FollowEvent(
+                        followRequest.IssuingUsername,
+                        followRequest.TargetUsername,
+                        this.timestampProvider()));
             }
 
             var postRequest = request as PostRequest;

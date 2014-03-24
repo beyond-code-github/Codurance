@@ -2,17 +2,19 @@
 {
     using System;
 
+    using Codurance.Handlers;
+
     class Program
     {
         static void Main(string[] args)
         {
-            var app = new CoduranceApp();
+            var handler = InputHandlerFactory.Create();
 
             while (true)
             {
                 Console.Write("> ");
                 var input = Console.ReadLine();
-                Console.Write(app.Process(input));
+                Console.Write(handler.Handle(input));
             }
         }
     }

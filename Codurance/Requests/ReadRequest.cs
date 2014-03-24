@@ -1,8 +1,6 @@
 ﻿namespace Codurance.Requests
 {
-    using Codurance.Aggregates;
-
-    public class ReadRequest : IRequest, IQuery
+    public class ReadRequest : IRequest
     {
         public ReadRequest(string targetUsername)
         {
@@ -10,10 +8,5 @@
         }
 
         public string TargetUsername { get; private set; }
-
-        public string Process(ISocialNetwork socialNetwork, IRenderingEngine renderingEngine)
-        {
-            return renderingEngine.RenderTimelinePosts(socialNetwork.GetTimeline(this.TargetUsername));
-        }
     }
 }

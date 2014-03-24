@@ -3,6 +3,8 @@
     using System;
     using System.Text;
 
+    using Codurance.Handlers;
+
     using Machine.Specifications;
 
     public class Behavior
@@ -11,7 +13,7 @@
 
         private static StringBuilder builder;
 
-        private static CoduranceApp app;
+        private static InputHandler handler;
 
         protected static DateTime currentTime;
 
@@ -20,7 +22,7 @@
                 var timestamp = TestHelpers.RandomDateTime();
 
                 builder = new StringBuilder();
-                app = new CoduranceApp(new Bootstrapper { TimestampProvider = () => currentTime });
+                handler = InputHandlerFactory.Create(new Bootstrapper { TimestampProvider = () => currentTime });
 
                 inputs = new dynamic[] {
                         new { Command = "Alice -> I love the weather today", Time = timestamp.AddMinutes(-5.9) },
@@ -42,7 +44,7 @@
                 {
                     currentTime = input.Time;
                     builder.AppendLine("> " + input.Command);
-                    builder.Append(app.Process(input.Command));
+                    builder.Append(handler.Handle(input.Command));
                 }
             };
 

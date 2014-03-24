@@ -1,23 +1,23 @@
-﻿namespace Codurance.ValueObjects
+﻿namespace Codurance.ViewModels
 {
     using System;
 
-    public class Post : IEquatable<Post>
+    public class PostViewModel : IEquatable<PostViewModel>
     {
-        public Post(string username, string message, DateTime timestamp)
+        public PostViewModel(string username, string message, DateTime timestamp)
         {
             this.Username = username;
             this.Message = message;
             this.Timestamp = timestamp;
         }
 
-        public string Username { get; private set; }
+        public string Username { get; set; }
 
-        public string Message { get; private set; }
+        public string Message { get; set; }
 
-        public DateTime Timestamp { get; private set; }
+        public DateTime Timestamp { get; set; }
 
-        public bool Equals(Post other)
+        public bool Equals(PostViewModel other)
         {
             if (ReferenceEquals(null, other))
             {
@@ -44,7 +44,7 @@
             {
                 return false;
             }
-            return this.Equals((Post)obj);
+            return Equals((PostViewModel)obj);
         }
 
         public override int GetHashCode()

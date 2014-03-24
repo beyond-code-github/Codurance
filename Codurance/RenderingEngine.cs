@@ -4,13 +4,13 @@
     using System.Collections.Generic;
     using System.Text;
 
-    using Codurance.ValueObjects;
+    using Codurance.ViewModels;
 
     public interface IRenderingEngine
     {
-        string RenderWallPosts(IEnumerable<Post> posts);
+        string RenderWallPosts(IEnumerable<PostViewModel> posts);
 
-        string RenderTimelinePosts(IEnumerable<Post> posts);
+        string RenderTimelinePosts(IEnumerable<PostViewModel> posts);
     }
 
     public class RenderingEngine : IRenderingEngine
@@ -22,7 +22,7 @@
             this.timestampProvider = timestampProvider;
         }
 
-        public string RenderTimelinePosts(IEnumerable<Post> posts)
+        public string RenderTimelinePosts(IEnumerable<PostViewModel> posts)
         {
             var now = timestampProvider();
             var builder = new StringBuilder();
@@ -36,7 +36,7 @@
             return builder.ToString();
         }
 
-        public string RenderWallPosts(IEnumerable<Post> posts)
+        public string RenderWallPosts(IEnumerable<PostViewModel> posts)
         {
             var now = timestampProvider();
             var builder = new StringBuilder();

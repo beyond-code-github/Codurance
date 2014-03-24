@@ -6,7 +6,7 @@
 
     using Codurance.Events;
     using Codurance.Tests.Unit.Events;
-    using Codurance.ValueObjects;
+    using Codurance.ViewModels;
 
     public static class TestHelpers
     {
@@ -63,19 +63,19 @@
             return Enumerable.Range(0, gen.Next(1, 5)).Select(o => new DummyEvent()).ToList();
         }
 
-        public static IEnumerable<Post> RandomPosts()
+        public static IEnumerable<PostViewModel> RandomPosts()
         {
             return
                 Enumerable.Range(0, gen.Next(1, 5))
-                    .Select(o => new Post(RandomString(), RandomString(), RandomDateTime()))
+                    .Select(o => new PostViewModel(RandomString(), RandomString(), RandomDateTime()))
                     .ToList();
         }
 
-        public static IEnumerable<Post> RandomPosts(DateTime timestamp)
+        public static IEnumerable<PostViewModel> RandomPosts(DateTime timestamp)
         {
             return
                 Enumerable.Range(0, gen.Next(1, 5))
-                    .Select(o => new Post(RandomString(), RandomString(), timestamp))
+                    .Select(o => new PostViewModel(RandomString(), RandomString(), timestamp))
                     .ToList();
         }
     }

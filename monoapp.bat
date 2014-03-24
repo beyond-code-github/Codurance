@@ -1,0 +1,1 @@
+mono Codurance\bin\debug\Codurance.exe

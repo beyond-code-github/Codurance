@@ -3,8 +3,6 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using Codurance.Events;
-
     public interface IViewModelProvider
     {
         IEnumerable<PostViewModel> GetTimelineForUser(string username);

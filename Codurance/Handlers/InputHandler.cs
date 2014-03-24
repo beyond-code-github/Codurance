@@ -19,7 +19,12 @@
 
         private readonly IViewModelProvider viewModelProvider;
 
-        public InputHandler(ISocialNetwork socialNetwork, IRequestParser requestParser, IRenderingEngine renderingEngine, Func<DateTime> timestampProvider, IViewModelProvider viewModelProvider)
+        public InputHandler(
+            ISocialNetwork socialNetwork,
+            IRequestParser requestParser,
+            IRenderingEngine renderingEngine,
+            Func<DateTime> timestampProvider,
+            IViewModelProvider viewModelProvider)
         {
             this.socialNetwork = socialNetwork;
             this.requestParser = requestParser;
